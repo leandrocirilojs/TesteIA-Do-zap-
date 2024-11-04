@@ -48,6 +48,19 @@
             phoneInput.value = "";
             messageInput.value = "";
             loadContacts();
+
+
+
+    // Exibir notificação
+    const notification = document.getElementById("notification");
+    notification.style.display = "block";
+    notification.innerText = "Contato adicionado!";
+    
+    setTimeout(() => {
+        notification.style.display = "none";
+    }, 2000); // Oculta a notificação após 2 segundos
+
+                
         }
 
         function removeContact(index) {
