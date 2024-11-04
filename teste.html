@@ -183,11 +183,12 @@ footer {
     </main>
 
     <footer>
-        <div class="footer-icon active">Conversas</div>
-        <div class="footer-icon">Atualizações</div>
-        <div class="footer-icon">Comunidades</div>
-        <div class="footer-icon">Ligações</div>
-    </footer>
+    <div class="footer-icon active">Conversas</div>
+    <div class="footer-icon">Atualizações</div>
+    <div class="footer-icon">Comunidades</div>
+    <div class="footer-icon">Ligações</div>
+    <input type="text" id="search-input" placeholder="Pesquisar contatos" oninput="searchContacts()" style="margin-left: 10px; border-radius: 5px; padding: 5px; border: 1px solid #ccc;">
+</footer>
 
     <script>
         function loadContacts() {
