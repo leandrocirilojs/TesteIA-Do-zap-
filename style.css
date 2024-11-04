@@ -176,3 +176,21 @@ footer input {
     background-color: #333;
     color: #fff;
 }
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.contact-image {
+    width: 50px; /* Tamanho desejado para a imagem */
+    height: 50px;
+    border-radius: 50%; /* Torna a imagem circular */
+    margin-right: 10px; /* Espaço entre a imagem e o nome */
+}
+
+.chat-info {
+    display: flex;
+    flex-direction: column;
+}
