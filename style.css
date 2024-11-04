@@ -154,9 +154,10 @@ footer {
     background-color: #ff4242;
 }
 footer input {
-    border-radius: 5px;
+    background-color: gray;
+    border-radius: 3px;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: none;
     width: 200px; /* Ajuste a largura conforme necessário */
     margin-left: 10px; /* Adiciona um espaço entre os ícones do footer */
 }
