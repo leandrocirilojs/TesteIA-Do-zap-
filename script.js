@@ -14,11 +14,11 @@ function loadContacts() {
                 <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
                 <p>Número: ${contact.number}</p>
                 <p>Adicionado em: ${contact.date}</p>
-            </div>
+            
         </a>
         <button onclick="removeContact(${index})" class="remove-button">X</button>
         <span class="time">Agora</span>`;
-        
+        </div>
         chatList.appendChild(chatDiv);
     });
 }
