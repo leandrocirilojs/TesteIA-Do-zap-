@@ -63,12 +63,16 @@
                 
         }
 
-        function removeContact(index) {
-            const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-            contacts.splice(index, 1);
-            localStorage.setItem("contacts", JSON.stringify(contacts));
-            loadContacts();
-        }
+function removeContact(index) {
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    const confirmDelete = confirm("Tem certeza que deseja remover este contato?");
+    
+    if (confirmDelete) {
+        contacts.splice(index, 1);
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+        loadContacts();
+    }
+}
 
         function searchContacts() {
             const searchInput = document.getElementById("search-input").value.toLowerCase();
