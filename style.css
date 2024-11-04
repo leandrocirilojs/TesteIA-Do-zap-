@@ -139,6 +139,11 @@ footer {
     font-weight: bold;
 }
 
+a{
+    text-decoration: none;
+    color: violet;
+}
+
 .remove-button {
     background-color: white;
     border: none;
