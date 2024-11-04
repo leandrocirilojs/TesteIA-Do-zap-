@@ -1,28 +1,30 @@
-function loadContacts() {
-    const chatList = document.getElementById("chat-list");
-    chatList.innerHTML = "";
+function createContactElement(contact, index) {
+    const chatDiv = document.createElement("div");
+    chatDiv.classList.add("chat");
 
-    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-
-    contacts.forEach((contact, index) => {
-        const chatDiv = document.createElement("div");
-        chatDiv.classList.add("chat");
-
-        chatDiv.innerHTML = `<a href="https://wa.me/${contact.number}" target="_blank">
+    chatDiv.innerHTML = `
+        <a href="https://wa.me/${contact.number}" target="_blank">
             <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User">
             <div class="chat-info">
                 <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
                 <p>Número: ${contact.number}</p>
                 <p>Adicionado em: ${contact.date}</p>
-            
-        </a></div>
+            </div>
+        </a>
         <button onclick="removeContact(${index})" class="remove-button">X</button>
         <span class="time">Agora</span>
-        
-        `;
-        
+    `;
 
-        
+    return chatDiv;
+}
+
+function loadContacts() {
+    const chatList = document.getElementById("chat-list");
+    chatList.innerHTML = "";
+
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    contacts.forEach((contact, index) => {
+        const chatDiv = createContactElement(contact, index);
         chatList.appendChild(chatDiv);
     });
 }
@@ -32,12 +34,6 @@ function addContact() {
     const messageInput = document.getElementById("message-input");
     const phoneNumber = phoneInput.value.trim();
     const message = messageInput.value.trim();
-
-    /* const phoneRegex = /^[0-9]+$/;
-    if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
-        alert("Por favor, insira um número de telefone válido.");
-        return;
-    } */
 
     const date = new Date().toLocaleString();
     const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
@@ -53,14 +49,13 @@ function addContact() {
 
     loadContacts();
 
-    // Exibir notificação
+    // Exibir notificação de adição
     const notification = document.getElementById("notification");
     notification.style.display = "block";
     notification.innerText = "Contato adicionado!";
-
     setTimeout(() => {
         notification.style.display = "none";
-    }, 4000); // Oculta a notificação após 4 segundos
+    }, 4000);
 }
 
 function removeContact(index) {
@@ -71,6 +66,14 @@ function removeContact(index) {
         contacts.splice(index, 1);
         localStorage.setItem("contacts", JSON.stringify(contacts));
         loadContacts();
+
+        // Exibir notificação de remoção
+        const notification = document.getElementById("notification");
+        notification.style.display = "block";
+        notification.innerText = "Contato removido!";
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 4000);
     }
 }
 
@@ -82,28 +85,14 @@ function searchContacts() {
 
     contacts.forEach((contact, index) => {
         if (contact.number.includes(searchInput) || contact.message.toLowerCase().includes(searchInput)) {
-            const chatDiv = document.createElement("div");
-            chatDiv.classList.add("chat");
-
-            chatDiv.innerHTML = `<a href="https://wa.me/${contact.number}" target="_blank">
-                <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User">
-                <div class="chat-info">
-                    <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
-                    <p>Número: ${contact.number}</p>
-                    <p>Adicionado em: ${contact.date}</p>
-                </div>
-            </a>
-            <button onclick="removeContact(${index})" class="remove-button">X</button>
-            <span class="time">Agora</span>`;
-            
+            const chatDiv = createContactElement(contact, index);
             chatList.appendChild(chatDiv);
         }
     });
 }
 
 function toggleTheme() {
-    const body = document.body;
-    body.classList.toggle("dark-theme");
+    document.body.classList.toggle("dark-theme");
 }
 
 window.onload = loadContacts;
