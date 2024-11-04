@@ -15,10 +15,10 @@ function loadContacts() {
                 <p>Número: ${contact.number}</p>
                 <p>Adicionado em: ${contact.date}</p>
             
-        </a>
+        </a></div>
         <button onclick="removeContact(${index})" class="remove-button">X</button>
         <span class="time">Agora</span>
-        </div>
+        
         `;
         
 
