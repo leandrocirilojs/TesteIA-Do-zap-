@@ -99,6 +99,11 @@ function removeContact(index) {
                 }
             });
         }
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("dark-theme");
+}
+
 
         window.onload = loadContacts;
     
