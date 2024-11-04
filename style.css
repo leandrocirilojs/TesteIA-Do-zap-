@@ -172,3 +172,7 @@ footer input {
     margin-left: 10px; /* Adiciona um espaço entre os ícones do footer */
 }
 
+.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
