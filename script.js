@@ -58,7 +58,7 @@
     
     setTimeout(() => {
         notification.style.display = "none";
-    }, 2000); // Oculta a notificação após 2 segundos
+    }, 4000); // Oculta a notificação após 2 segundos
 
                 
         }
