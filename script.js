@@ -3,16 +3,16 @@ function createContactElement(contact, index) {
     chatDiv.classList.add("chat");
 
     chatDiv.innerHTML = `
-        <a href="https://wa.me/${contact.number}" target="_blank">
-            <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User">
+        <a href="https://wa.me/${contact.number}" target="_blank" class="contact-link">
+            <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User" class="contact-image">
             <div class="chat-info">
                 <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
                 <p>Número: ${contact.number}</p>
                 <p>Adicionado em: ${contact.date}</p>
-            
+            </div>
         </a>
         <button onclick="removeContact(${index})" class="remove-button">X</button>
-        <span class="time">Agora</span></div>
+        <span class="time">Agora</span>
     `;
 
     return chatDiv;
