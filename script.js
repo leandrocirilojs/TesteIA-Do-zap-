@@ -17,8 +17,12 @@ function loadContacts() {
             
         </a>
         <button onclick="removeContact(${index})" class="remove-button">X</button>
-        <span class="time">Agora</span>`;
+        <span class="time">Agora</span>
         </div>
+        `;
+        
+
+        
         chatList.appendChild(chatDiv);
     });
 }
