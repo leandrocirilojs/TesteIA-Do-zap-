@@ -91,7 +91,7 @@ main {
     transition: transform 0.3s ease;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 4px;
     border-bottom: 1px solid #e6e6e6;
 }
 .chat:hover {
