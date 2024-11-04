@@ -64,14 +64,61 @@
         }
 
 function removeContact(index) {
+    // Cria o efeito de explosão de partículas
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 50,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ff0000"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+            },
+            "size": {
+                "value": 5,
+                "random": true,
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 6,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false
+            }
+        }
+    });
+
     const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    const confirmDelete = confirm("Tem certeza que deseja remover este contato?");
-    
-    if (confirmDelete) {
-        contacts.splice(index, 1);
-        localStorage.setItem("contacts", JSON.stringify(contacts));
-        loadContacts();
-    }
+    contacts.splice(index, 1);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    loadContacts();
+}
 }
 
         function searchContacts() {
