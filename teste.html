@@ -37,27 +37,35 @@
 
         .search-bar {
             display: flex;
+            align-items: flex-end;
             padding: 10px;
             background-color: #fff;
-            align-items: center;
             justify-content: center;
         }
 
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            margin-right: 10px;
+        }
+
         .search-bar input {
-            width: 35%;
-            padding: 12px;
-            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
             border: none;
             background-color: #f1f1f1;
+            margin-bottom: 5px;
         }
 
         textarea {
-            width: 50%;
+            width: 100%;
             resize: none;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 14px;
-            margin-left: 10px;
+            padding: 10px;
         }
 
         .send-button {
@@ -71,7 +79,6 @@
             justify-content: center;
             color: #fff;
             font-size: 1.2rem;
-            margin-left: 8px;
             cursor: pointer;
         }
 
@@ -153,8 +160,10 @@
     </header>
 
     <div class="search-bar">
-        <input type="text" id="phone-input" placeholder="Digite o número de telefone">
-        <textarea id="message-input" placeholder="Digite sua mensagem" rows="3"></textarea>
+        <div class="input-group">
+            <input type="text" id="phone-input" placeholder="Digite o número de telefone">
+            <textarea id="message-input" placeholder="Digite sua mensagem" rows="3"></textarea>
+        </div>
         <button onclick="addContact()" class="send-button">
             <i class="fas fa-paper-plane"></i>
         </button>
@@ -172,10 +181,9 @@
     </footer>
 
     <script>
-        // Função para carregar os contatos do LocalStorage e exibi-los como links
         function loadContacts() {
             const chatList = document.getElementById("chat-list");
-            chatList.innerHTML = ""; // Limpa a lista antes de carregar
+            chatList.innerHTML = "";
             
             const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 
@@ -197,14 +205,12 @@
             });
         }
 
-        // Função para adicionar um novo contato e salvar no LocalStorage
         function addContact() {
             const phoneInput = document.getElementById("phone-input");
             const messageInput = document.getElementById("message-input");
             const phoneNumber = phoneInput.value.trim();
             const message = messageInput.value.trim();
 
-            // Verifica se o número de telefone é válido (apenas dígitos)
             const phoneRegex = /^[0-9]+$/;
             if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
                 alert("Por favor, insira um número de telefone válido.");
@@ -226,7 +232,6 @@
             loadContacts();
         }
 
-        // Função para remover um contato
         function removeContact(index) {
             const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
             contacts.splice(index, 1);
@@ -234,7 +239,6 @@
             loadContacts();
         }
 
-        // Carrega os contatos ao iniciar a página
         window.onload = loadContacts;
     </script>
 </body>
