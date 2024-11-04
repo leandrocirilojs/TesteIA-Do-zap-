@@ -149,7 +149,7 @@ a{
 }
 
 .remove-button {
-    background-color: white;
+    background-color: red;
     border: none;
     color: #fff;
     padding: 5px 10px;
@@ -157,6 +157,7 @@ a{
     border-radius: 5px;
     font-size: 0.8rem;
     margin-left: 10px;
+    margin-right: 4px;
 }
 
 .remove-button:hover {
