@@ -60,7 +60,40 @@
         notification.style.display = "none";
     }, 4000); // Oculta a notificação após 2 segundos
 
-                
+  }
+
+
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    contacts.splice(index, 1);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    loadContacts();
+}
+}
+
+        function searchContacts() {
+            const searchInput = document.getElementById("search-input").value.toLowerCase();
+            const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+            const chatList = document.getElementById("chat-list");
+            chatList.innerHTML = ""; // Limpa a lista antes de carregar os contatos filtrados
+
+            contacts.forEach((contact, index) => {
+                if (contact.number.includes(searchInput) || contact.message.toLowerCase().includes(searchInput)) {
+                    const chatDiv = document.createElement("div");
+                    chatDiv.classList.add("chat");
+
+                    chatDiv.innerHTML = `<a href="https://wa.me/${contact.number}" target="_blank">
+                        <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User">
+                        <div class="chat-info">
+                            <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
+                            <p>Número: ${contact.number}</p>
+                            <p>Adicionado em: ${contact.date}</p>
+                        </a></div>
+                        <button onclick="removeContact(${index})" class="remove-button">X</button>
+                        <span class="time">Agora</span>
+                    `;
+                    chatList.appendChild(chatDiv);
+                }
+            });
         }
 
 function removeContact(index) {
@@ -114,38 +147,7 @@ function removeContact(index) {
         }
     });
 
-    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    contacts.splice(index, 1);
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-    loadContacts();
-}
-}
-
-        function searchContacts() {
-            const searchInput = document.getElementById("search-input").value.toLowerCase();
-            const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-            const chatList = document.getElementById("chat-list");
-            chatList.innerHTML = ""; // Limpa a lista antes de carregar os contatos filtrados
-
-            contacts.forEach((contact, index) => {
-                if (contact.number.includes(searchInput) || contact.message.toLowerCase().includes(searchInput)) {
-                    const chatDiv = document.createElement("div");
-                    chatDiv.classList.add("chat");
-
-                    chatDiv.innerHTML = `<a href="https://wa.me/${contact.number}" target="_blank">
-                        <img src="https://poloshoppingindaiatuba.com.br/assets/images/732e11da931f0081ab573c6bf3f38459.jpg" alt="User">
-                        <div class="chat-info">
-                            <h2>${contact.message.split(' ')[0]} ${index + 1}</h2>
-                            <p>Número: ${contact.number}</p>
-                            <p>Adicionado em: ${contact.date}</p>
-                        </a></div>
-                        <button onclick="removeContact(${index})" class="remove-button">X</button>
-                        <span class="time">Agora</span>
-                    `;
-                    chatList.appendChild(chatDiv);
-                }
-            });
-        }
+        
 function toggleTheme() {
     const body = document.body;
     body.classList.toggle("dark-theme");
